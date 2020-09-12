@@ -14,6 +14,11 @@ namespace Emails
     {
         private readonly IEmailSender _emailSender;
 
+        private static readonly string[] Summaries = new[]
+        {
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot"
+        };
+
         public HomeController(IEmailSender emailSender)
         {
             _emailSender = emailSender;
@@ -31,7 +36,7 @@ namespace Emails
                 {
                     Date = DateTime.Now.AddDays(index),
                     TemperatureC = rng.Next(-20, 55),
-                    //Summary = Summaries[rng.Next(Summaries.Length)]
+                    Summary = Summaries[rng.Next(Summaries.Length)]
                 })
                 .ToArray();
         }
